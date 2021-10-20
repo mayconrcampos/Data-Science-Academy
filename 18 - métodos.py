@@ -40,17 +40,17 @@ class Calculadora:
             print(f"{erro} - Não é possível dividir nenhum número por ZERO. Tente novamente.")
     
 
-
-def paraounao():
-    n = input("Deseja continuar? S ou N")
-    if n in "sS":
-        return True
-    else:
-        return False       
+class Parar:
+    @staticmethod
+    def paraounao():
+        n = input("Deseja continuar? S ou N: ")
+        if n in "sS":
+            return True
+        else:
+            return False       
         
-        
-
 Numeros = Numeros()
+
 while True:
     n1 = input("Digite o primeiro número: ")
     n2 = input("Digite o segundo número: ")
@@ -64,25 +64,26 @@ while True:
         print("3. Multiplicação")
         print("4. Divisão")
 
-        opcao = input("Digite a opção, ou 0 pra sair.")
+        opcao = input("Digite a opção 1-2-3-4: ")
 
-        if opcao == "0":
-            print("Você saiu da aplicação.")
-            break
-        elif opcao == "1":
+        if opcao == "1":
             Calculadora.soma(Numeros)
-            s = paraounao()
-            if not s:
-                break
             
         elif opcao == "2":
             Calculadora.subtrai(Numeros)
+
         elif opcao == "3":
             Calculadora.multiplica(Numeros)
+
         elif opcao == "4":
             Calculadora.divide(Numeros)
+
         else:
             print("Opção inválida, tente novamente.")
+        
+        s = Parar.paraounao()
+        if not s:
+            break
     
     else:
         print("Números inválidos. Tente novamente.")
