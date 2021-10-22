@@ -1,6 +1,7 @@
 from palavras import Palavras
 from forca import Forca
 from jogo import Jogo
+from os import system
 
 jogo = Jogo()
 palavra = Palavras()
@@ -15,15 +16,28 @@ while True:
     if opcao == "1":
         palavraSorteada = palavra.sorteio()
 
-        tentativa = 0
+        tentativa = 1
         while True:
 
-            letra = input("Digite a letra: ")
+            letra = input("Digite a letra: ").lower()
+            system("clear")
 
-            if not len(letra) > 1:
-                jogo.jogada(letra, palavra.getSorteada())
-
+            if len(letra) > 0 and len(letra) < 2:
+                jogo.jogada(letra, palavraSorteada)
                 
+                print(palavraSorteada, tentativa)
+                #jogo.letrasErradas()
+                tentativa += 1
+                if jogo.jogadas == 7:
+                    print("Você perdeu.")
+                    jogo.reiniciarJogo()
+                    break
+            else:
+                print("Jogada Inválida. Digite somente uma letra.")
+    
+    elif opcao == "2":
+        print("Fim do joguinho.")
+        break   
                 
 
     else:

@@ -1,5 +1,6 @@
 class Forca:
     def __init__(self):
+        self.conta = 0
         self.forca = [
         """
             +---+
@@ -54,11 +55,17 @@ class Forca:
            / \  |
                 |
         =========
+        GAME OVER!
         """
         ]
     
     def imprimeForca(self):
-        return print(self.forca)  
+        if self.conta < 7:
+            print(self.forca[self.conta])
+            self.conta += 1
+        else:
+            self.conta = 0
+            print("Game over")
 
 
 
