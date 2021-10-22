@@ -30,6 +30,7 @@ class Palavras:
     def mascara(self):
         mascara = ""
         
+        
 
 
 
