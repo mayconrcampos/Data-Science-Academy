@@ -6,16 +6,26 @@ class Palavras:
         self.sorteada = []
   
     
-
+ 
     def sorteio(self):
-        self.sorteada.append(self.palavras[randint(0, len(self.palavras))].lower())
-        return self.sorteada[0]
+        existe = False
+        for palavra in self.sorteada:
+            if self.palavras[randint(0, len(self.palavras) - 1)].lower() == palavra:
+                existe = True
+                break
+
+        if not existe:  
+            self.sorteada.append(self.palavras[randint(0, len(self.palavras) - 1)].lower())
+            return self.sorteada[-1]
+        else:
+            self.sorteio()
     
+
     def getSorteada(self):
-        self.sorteada[0]
+        self.sorteada[-1]
     
     def sorteadasHistorico(self):
-        return self.sorteada
+        print(f"Histórico: {self.sorteada}")
     
     def mascara(self):
         mascara = ""

@@ -63,9 +63,17 @@ class Forca:
         if self.conta < 7:
             print(self.forca[self.conta])
             self.conta += 1
+            print(self.conta)
+    
+    def imprimeForca2(self):
+        if self.conta == 0:
+            print(self.forca[0])
         else:
-            self.conta = 0
-            print("Game over")
+            print(self.forca[self.conta - 1])
+    
+    def zeraForca(self):
+        self.conta = 0
+            
 
 
 
