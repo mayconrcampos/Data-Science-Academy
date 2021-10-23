@@ -1,10 +1,14 @@
 from forca import Forca
+from palavras import Palavras
 
-class Jogo:
+class Jogo():
     def __init__(self):
+        #super().__init__()
         self.letrasErradas = list()
         self.jogadas = 1
         self.forca = Forca() 
+        self.palavra = Palavras()
+        
 
 
     def jogada(self, chute, jogada):
@@ -14,6 +18,7 @@ class Jogo:
             if jogada[indice] == chute.lower():
                 acertou = True
                 indices.append(indice)
+                #self.palavra.retiraMascara(indice)
                       
         if acertou:
             for l in indices:
@@ -25,6 +30,7 @@ class Jogo:
             print(f"Letras Erradas: {self.letrasErradas}")
             print("======================================")
             print(self.forca.imprimeForca())
+            #print(self.imprimeMascara())
             print("======================================")
             self.jogadas += 1
     
@@ -33,6 +39,7 @@ class Jogo:
         self.letrasErradas = list()
         self.jogadas = 1
         self.forca.zeraForca()
+        self.palavra.zeraMascara()
         
             
             

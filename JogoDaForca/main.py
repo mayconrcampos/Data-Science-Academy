@@ -17,6 +17,7 @@ while True:
 
     if opcao == "1":
         palavraSorteada = palavra.sorteio()
+        palavra.geraMascara()
 
         tentativa = 1
 
@@ -29,11 +30,13 @@ while True:
             if len(letra) > 0 and len(letra) < 2:
 
                 print(f"Letra digitada: {letra}")
-
+                
+                
                 jogo.jogada(letra, palavraSorteada)
-                
+                palavra.retiraMascara(letra)
                 print(f"Palavra Sorteada da lista: {palavraSorteada} - tentativa: {tentativa}")
-                
+                palavra.imprimeMascara()
+
                 tentativa += 1
                 if jogo.jogadas == 7:
                     print("Você perdeu.")
