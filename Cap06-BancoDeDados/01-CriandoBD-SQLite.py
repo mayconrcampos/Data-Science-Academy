@@ -33,7 +33,7 @@ cur.execute(sql)
 
 
 while True:
-    print("Inserção de Cursos em Banco de Dados SQLite3")
+    print("\n\n\n\n\nInserção de Cursos em Banco de Dados SQLite3")
     print("1. Inserir Registros")
     print("2. Listar Registros")
     print("3. Sair")
@@ -85,7 +85,7 @@ while True:
             dados = cur.fetchall()
 
             for linha in dados:
-                print(f"ID: {linha[0]} Título: {linha[1]} Categoria: {linha[2]}")
+                print(f"ID: {linha[0]:<5} Título: {linha[1]:<70} Categoria: {linha[2]}")
 
 
         elif opcao == "3":
