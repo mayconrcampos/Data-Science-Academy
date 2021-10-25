@@ -5,7 +5,7 @@ class Palavras:
         self.palavras = ["Axioma", "Azulejo", "Blitz", "Catarro", "Coçar", "Crespo", "Cripta", "Duplex", "Girar", "Gnóstico", "Icterícia", "Jazz", "Intrigante", "Marfim", "Psique", "Indigno", "Vapor", "Vértice", "Anel", "Farinha", "Fósforo", "Bronquite", "Traquinagem", "Computador", "Salgado", "Foligem", "Prestobarba", "Privilégio", "Bunda", "Braço", "Cabeça", "Monitor", "Zorba", "Zebra", "Chantagem", "Trambolho", "Rolha", "Relento", "Oceano", "Tempestade", "Urbano", "América", "Argentina", "Colombia", "Farofa", "Peixe", "Camarão"]
 
         self.sorteada = []
-        self.mascarada = ""
+        self.mascarada = []
   
     def sorteio(self):
         existe = False
@@ -24,26 +24,24 @@ class Palavras:
     def getSorteada(self):
         self.sorteada[-1]
     
-    def sorteadasHistorico(self):
-        print(f"Histórico: {self.sorteada}")
     
     def geraMascara(self):
         for letra in self.sorteada[-1]:
-            self.mascarada += " - "
+            self.mascarada.append(" - ")
         
     def zeraMascara(self):
-        self.mascarada = ""
+        self.mascarada = list()
     
     def imprimeMascara(self):
-        print(f"Dica: {self.mascarada}")
+        for letra in self.mascarada:
+            print(f"{letra}", end=" ")
     
-
-    def retiraMascara(self, l):
-        for indice in range(0, len(self.sorteada[-1]) - 1):
-            print(l, self.sorteada[-1][indice])
-            #if l == self.sorteada[-1][indice]:
-            #    self.mascarada[indice].replace(self.mascarada[indice], l)
-            #    print(f"pacaba {l} - {self.mascarada}")
+    def removeMascara(self, letra, indice):
+        self.mascarada[indice] = letra
+    
+    
+    
+            
 
 
         

@@ -63,7 +63,7 @@ class Forca:
         if self.conta < 7:
             print(self.forca[self.conta])
             self.conta += 1
-            print(self.conta)
+            #print(self.conta)
     
     def imprimeForca2(self):
         if self.conta == 0:

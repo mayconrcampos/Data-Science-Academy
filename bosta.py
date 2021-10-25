@@ -1,0 +1,5 @@
+stringue = "bosta"
+
+
+
+print(lista)
