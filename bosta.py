@@ -1,5 +1,0 @@
-stringue = "bosta"
-
-
-
-print(lista)
