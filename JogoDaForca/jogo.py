@@ -1,10 +1,12 @@
 from forca import Forca
 from palavras import Palavras
+from placar import Placar
 from os import system
 
 
 forca = Forca() 
 palavra = Palavras()
+placar = Placar()
 
 class Jogo():
     def __init__(self):
@@ -21,6 +23,7 @@ class Jogo():
             self.palavraDaVez = palavra.sorteio()
             self.historicoDePalavrasSorteadas.append(self.palavraDaVez)
             palavra.geraMascara()
+            palavra.imprimeMascara()
             self.jogadas += 1
         
         while True:
@@ -34,25 +37,23 @@ class Jogo():
                 letra = letra.lower().strip()
                 
                 print(f"Você digitou: {letra}")
-                
-
-                #print("Palavra Sorteada: ", self.palavraDaVez)
 
                 for index in range(0, len(self.palavraDaVez)):
                     if self.palavraDaVez[index] == letra:
                         palavra.removeMascara(letra, index)
 
-                        
-
                         self.acertou = True
 
-                
+
                 if self.acertou:
                     if self.venceu():
+                        placar.setVitoria()
                         return False
 
-                    print("Você já tentou, mas estão erradas: ", self.letrasErradas)
+                    if len(self.letrasErradas) > 0:
+                        print("Histórico de Tentativas: ", self.letrasErradas)
 
+                    print("-="*30)
                     print("Acertou!")
                     palavra.imprimeMascara()
                     forca.imprimeForca2()
@@ -61,17 +62,18 @@ class Jogo():
 
                 elif self.acertou == False:
                     if self.perdeu():
+                        placar.setDerrota()
                         return False
-
-                    print("Errou!")
 
                     self.jogadas += 1
 
-                    #print("DEBUG ",self.jogadas)
-
                     self.letrasErradas.append(letra)
 
-                    print("Você já tentou, mas estão erradas: ", self.letrasErradas)
+                    if len(self.letrasErradas) > 0:
+                        print("Histórico de Tentativas: ", self.letrasErradas)
+                    
+                    print("-="*30)
+                    print("Errou!")
 
                     palavra.imprimeMascara()
                     forca.imprimeForca()
@@ -97,13 +99,13 @@ class Jogo():
     
     def venceu(self):
         if " - " not in palavra.mascarada:
-            print("Parabéns! Você Venceu! A palavra secreta era ", self.palavraDaVez)
+            print("-=-=-=-=-=-= Parabéns! Você Venceu! A palavra secreta era ", self.palavraDaVez, "-=-=-=-=-=-=")
             self.reiniciarJogo()
             return True
     
     def perdeu(self):
         if self.jogadas == 6:
-            print("Você perdeu! A palavra secreta era ", self.palavraDaVez)
+            print("-=-=-=-=-=-= Você perdeu! A palavra secreta era ", self.palavraDaVez, "-=-=-=-=-=-=")
             self.reiniciarJogo()
             return True
     
@@ -111,9 +113,6 @@ class Jogo():
     def historico(self):
         return self.historicoDePalavrasSorteadas
             
-    #def imprimeTentativas(self):
-    #    for item in self.letrasErradas:
-    #        print("Tentativas: ", item, end=" ")
 
     
             
