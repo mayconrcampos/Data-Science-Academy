@@ -1,4 +1,5 @@
 from jogo import Jogo
+from os import system
 
 jogo = Jogo()
 
@@ -11,6 +12,7 @@ while True:
     print("3. Sair")
 
     opcao = input("Opção 1-2-3 : ")
+    system("clear")
 
     if opcao == "1":
         jogo.jogada() 
