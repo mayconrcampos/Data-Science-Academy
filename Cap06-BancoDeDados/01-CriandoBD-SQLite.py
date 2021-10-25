@@ -30,53 +30,79 @@ cur.execute(sql)
 
 
 # Inserir registro no DB
-sql_insert = """insert into cursos (titulo, categoria) VALUES"""
 
-lista = []
 
-conta = 0
 while True:
-    titulo = input("Digite o título do curso: ")
-    categoria = input("Digite a categoria: ")
+    print("Inserção de Cursos em Banco de Dados SQLite3")
+    print("1. Inserir Registros")
+    print("2. Listar Registros")
+    print("3. Sair")
 
-    if titulo and categoria:
-        if conta < 1:
-            sql_insert += f" ('{titulo}', '{categoria}') "
-            conta += 5
-        else:
-            sql_insert += ","
-            sql_insert += f"('{titulo}', '{categoria}') "
+    opcao = input("Opção 1-2-3 : ")
+    os.system("clear")
 
-        continua = input("Deseja inserir mais um título? s ou n : ")
+    if opcao and opcao.isnumeric():
+        if opcao == "1":
 
-        if continua in "sS":
-            continue
-        else:
+            conta = 0
+            sql_insert = """insert into cursos (titulo, categoria) VALUES"""
+
+            while True:
+                titulo = input("Digite o título do curso: ")
+                categoria = input("Digite a categoria: ")
+
+                if titulo and categoria:
+                    if conta < 1:
+                        sql_insert += f" ('{titulo}', '{categoria}') "
+                        conta += 5
+                    else:
+                        sql_insert += ","
+                        sql_insert += f"('{titulo}', '{categoria}') "
+
+                    continua = input("Deseja inserir mais um título? s ou n : ")
+
+                    if continua in "sS":
+                        continue
+                    else:
+                        # criando laço for para inserir lista no DB
+                        cur.execute(sql_insert)
+
+                        # grava transação
+                        conn.commit()
+                        break
+                    
+                else:
+                    print("É preciso preencher ambos os campos para inserir no DB.")
+        elif opcao == "2":
+            print("Listando registros: ")
+
+            # Fazendo uma query SELECT
+            sql_select = "select * from cursos"
+
+            # seleciona todos os registro e os recupera
+            cur.execute(sql_select)
+
+            dados = cur.fetchall()
+
+            for linha in dados:
+                print(f"ID: {linha[0]} Título: {linha[1]} Categoria: {linha[2]}")
+
+
+        elif opcao == "3":
+            print("Encerrando o programa")
             break
+
+        else:
+            print("Opção inexistente.")
     
     else:
-        print("É preciso preencher ambos os campos para inserir no DB.")
-
+        print("Opção inválida")
 
 #print(sql_insert)
 
-# criando laço for para inserir lista no DB
-
-cur.execute(sql_insert)
-
-# grava transação
-conn.commit()
 
 
-# Fazendo um SELECT
-sql_select = "select * from cursos"
 
-# seleciona todos os registro e os recupera
-cur.execute(sql_select)
 
-dados = cur.fetchall()
-
-for linha in dados:
-    print(linha[0], linha[1], linha[2])
 
 
