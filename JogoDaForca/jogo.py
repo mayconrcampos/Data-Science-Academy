@@ -111,7 +111,7 @@ class Jogo():
     
    
     def historico(self):
-        return self.historicoDePalavrasSorteadas
+        print(self.historicoDePalavrasSorteadas)
             
 
     
