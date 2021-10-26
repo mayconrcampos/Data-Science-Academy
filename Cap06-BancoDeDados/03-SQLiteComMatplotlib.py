@@ -168,7 +168,7 @@ while True:
                 lista = select()
 
                 for linha in lista:
-                    print(f"ID: {linha[0]:<5} Data: {linha[1]:<40} Nome: {linha[2]} Valor (R$): {linha[3]:.2f}")
+                    print(f"ID: {linha[0]:<5} Data: {linha[1]:<40} Nome: {linha[2]} Valor (R$): {linha[3]:<.2f}")
             else:
                 print("ID inexistente na base de dados")
 
