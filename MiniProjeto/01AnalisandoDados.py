@@ -107,6 +107,37 @@ plt.title("Distribuição de Títulos", loc="Center", fontdict= {"fontsize": 20,
 plt.show()
 
 
+"""2- Qual o Número de Títulos por Gênero?
+Abaixo vamos calcular o número de filmes por gênero e entregar o resultado em valor percentual
+"""
+
+# Cria a consulta SQL
+consulta2 = """SELECT genres, count(*) FROM titles WHERE type='movie' GROUP BY genres"""
+
+
+# Resultado
+resultado2 = pd.read_sql_query(consulta2, conn)
+
+# Visualizando resultado
+print("\n\nR:. 2. Número de títulos por gênero")
+print(resultado2)
+
+# Convertendo strings todas para minusculo
+resultado2['genres'] = resultado2['genres'].str.lower().values
+
+# remove valores NA ausentes
+temp = resultado2['genres'].dropna()
+
+"""Usamos o CountVectorizer para converter a coluna de gêneros em um vetor one-hot encoded para contar o número de filmes em cada gênero."""
+
+# Vamos criar um vetor usando expressão regular para filtrar strings
+
+padrao = '(?u)\\b[\\w-]+\\b'
+vetor = CountVectorizer(token_pattern=padrao, analyzer='word').fit(temp)
+
+
+
+
 
 
 
